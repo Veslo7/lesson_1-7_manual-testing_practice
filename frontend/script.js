@@ -96,12 +96,12 @@ applicationForm.addEventListener('submit', async event => {
     if (!response.ok) throw new Error(result.error?.message || `HTTP ${response.status}`);
     submitStatus.dataset.state = 'success';
     submitStatus.textContent = `Заявка #${result.id} сохранена. Спасибо!`;
+    applicationForm.reset();
     await loadApplications();
   } catch (error) {
     submitStatus.dataset.state = 'error';
     submitStatus.textContent = `Заявка не отправлена. ${error.message}`;
   } finally {
-    applicationForm.reset();
     submitButton.disabled = false;
   }
 });
